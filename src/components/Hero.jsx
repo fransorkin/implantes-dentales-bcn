@@ -63,7 +63,7 @@ export default function Hero() {
               width="400"
               height="440"
               fetchPriority="high"
-              className="mx-auto aspect-[400/410] w-full max-w-md object-cover object-top mix-blend-lighten"
+              className="aspect-[400/410] w-full object-cover object-top"
             />
             <figcaption className="absolute inset-x-3 bottom-3 rounded-2xl bg-white px-5 py-3.5 text-ink">
               <span className="block text-[0.95rem] font-semibold">{brand.doctor}</span>

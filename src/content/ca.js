@@ -36,7 +36,7 @@ export default {
     titleEm: 'en un sol dia.',
     lead: 'Implantologia avançada a Barcelona amb el Dr. Diego Uribe Echevarría. All-on-4, All-on-6 i càrrega immediata, amb planificació 3D i cirurgia guiada.',
     role: 'Cirurgia oral · Implantologia · Rehabilitació integral',
-    photoAlt: 'Dr. Diego Uribe Echevarría, especialista en implantologia',
+    photoAlt: 'El Dr. Diego Uribe Echevarría col·locant un implant dental amb la seva assistent',
     stats: {
       years: { label: "anys d'experiència en implantologia" },
       since: { kicker: 'Des de', label: 'milers de tractaments realitzats' },

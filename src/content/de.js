@@ -36,7 +36,7 @@ export default {
     titleEm: 'an einem einzigen Tag.',
     lead: 'Moderne Implantologie in Barcelona mit Dr. Diego Uribe Echevarría. All-on-4, All-on-6 und Sofortbelastung – mit 3D-Planung und navigierter Chirurgie.',
     role: 'Oralchirurgie · Implantologie · Komplettsanierung',
-    photoAlt: 'Dr. Diego Uribe Echevarría, Spezialist für Implantologie',
+    photoAlt: 'Dr. Diego Uribe Echevarría setzt mit seiner Assistentin ein Zahnimplantat',
     stats: {
       years: { label: 'Jahre Erfahrung in der Implantologie' },
       since: { kicker: 'Seit', label: 'Tausende durchgeführte Behandlungen' },

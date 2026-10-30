@@ -58,7 +58,7 @@ export default function Hero() {
         <motion.figure {...rise(0.2)} className="lg:col-span-5">
           <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl bg-ink lg:max-w-none">
             <img
-              src="/img/dr-diego.jpg"
+              src="/img/dr-diego-cirugia.jpg"
               alt={h.photoAlt}
               width="400"
               height="440"

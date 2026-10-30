@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", system-ui, sans-serif;
+
+  --color-ink: #14181f;
+  --color-graphite: #1b2029;
+  --color-graphite-2: #262d39;
+  --color-porcelain: #f5f7fb;
+  --color-white: #ffffff;
+  --color-mist: #e9eef6;
+  --color-line: #dfe5ee;
+  --color-titanium: #8590a0;
+  --color-muted: #566072;
+  --color-brand: #1f6fd6;
+  --color-brand-2: #185db6;
+  --color-brand-soft: #b9d4f7;
+  --color-brand-pale: #e4edfa;
+  --color-gold: #e8b64c;
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-porcelain text-ink font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--color-brand);
+  }
+  ::selection {
+    background: var(--color-brand-soft);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+}
+@utility display {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+@utility eyebrow {
+  @apply text-sm font-semibold;
+}
+@utility btn {
+  @apply relative inline-flex min-h-13 cursor-pointer items-center justify-center gap-2.5 rounded-full px-7 text-[0.95rem] font-semibold whitespace-nowrap transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.98];
+}
+@utility btn-brand {
+  @apply btn bg-brand text-white hover:bg-brand-2;
+}
+@utility btn-light {
+  @apply btn bg-white text-ink hover:bg-brand-pale;
+}
+@utility btn-dark {
+  @apply btn bg-ink text-white hover:bg-graphite-2;
+}
+@utility btn-outline-light {
+  @apply btn border border-white/25 text-white hover:border-white/60;
+}
+@utility btn-outline-dark {
+  @apply btn border border-ink/15 text-ink hover:border-ink/40;
+}
+@keyframes ping-soft {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.animate-ping-soft {
+  animation: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-ping-soft { animation: none; }
+}

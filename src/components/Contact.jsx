@@ -453,7 +453,7 @@ export function MobileBar() {
             <Phone className="size-4" aria-hidden="true" />
             {t.ui.call}
           </a>
-          <a href="#contacto" className="flex min-h-12 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+          <a href="#formulario" onClick={goToForm} className="flex min-h-12 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
             {t.ui.consultShort}
           </a>
         </motion.div>

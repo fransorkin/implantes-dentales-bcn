@@ -3,6 +3,7 @@ import { ArrowRight, Check } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { treatmentImages } from '../data'
 import { useT } from '../i18n'
+import { goToForm } from './Contact'
 import { MaskText, Reveal, ease } from './motion'
 
 export function Eyebrow({ children, light = false }) {
@@ -25,7 +26,7 @@ export function Pains() {
               {p.lead}
             </Reveal>
             <Reveal delay={0.2} className="mt-10">
-              <a href="#contacto" className="btn-brand group">
+              <a href="#formulario" onClick={goToForm} className="btn-brand group">
                 {t.ui.consult}
                 <ArrowRight className="size-4 transition-transform duration-500 ease-premium group-hover:translate-x-1" aria-hidden="true" />
               </a>
@@ -170,7 +171,7 @@ export function Treatments() {
                       </motion.li>
                     ))}
                   </ul>
-                  <a href="#contacto" className="btn-brand group mt-10 self-start md:mt-auto">
+                  <a href="#formulario" onClick={goToForm} className="btn-brand group mt-10 self-start md:mt-auto">
                     {t.ui.learnMore}
                     <ArrowRight className="size-4 transition-transform duration-500 ease-premium group-hover:translate-x-1" aria-hidden="true" />
                   </a>

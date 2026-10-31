@@ -370,7 +370,7 @@ export function Footer() {
       <div className="container-x">
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo />
+            <Logo onDark />
             <p className="mt-6 max-w-xs text-sm text-white/55">{ft.tagline}</p>
           </div>
           <nav aria-label={ft.footerNav} className="md:col-span-3 md:col-start-6">

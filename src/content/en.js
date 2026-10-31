@@ -192,8 +192,8 @@ export default {
   },
   contact: {
     eyebrow: 'First visit',
-    title: 'Request your assessment.',
-    titleEm: 'The first visit is free.',
+    title: 'If you are ready to start the change that gives you the freedom to eat and smile again,',
+    titleEm: 'fill in this form.',
     lead: 'Complete the form and we will contact you within 24 hours to arrange your appointment, including diagnosis and a fixed quote.',
     benefits: ['Fixed teeth in one day', 'Full-mouth rehabilitation', 'Personalised care', 'Financing from 3 to 72 months'],
     callUs: 'Phone',

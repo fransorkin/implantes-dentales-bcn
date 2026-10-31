@@ -216,7 +216,7 @@ export function Contact() {
           <Reveal>
             <p className="eyebrow text-white/90">{c.eyebrow}</p>
           </Reveal>
-          <MaskText className="display mt-6 text-[clamp(1.9rem,3.5vw,3rem)]" lines={[c.title, <em key="e" className="!text-white">{c.titleEm}</em>]} />
+          <MaskText className="display mt-6 text-[clamp(1.6rem,2.6vw,2.4rem)]" lines={[c.title, <em key="e" className="!text-white">{c.titleEm}</em>]} />
           <Reveal delay={0.1} as="p" className="mt-6 max-w-md text-lg text-white/90">
             {c.lead}
           </Reveal>

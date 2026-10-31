@@ -192,8 +192,8 @@ export default {
   },
   contact: {
     eyebrow: 'Erstberatung',
-    title: 'Fordern Sie Ihre Untersuchung an.',
-    titleEm: 'Die Erstberatung ist kostenlos.',
+    title: 'Wenn du bereit bist für die Veränderung, die dir die Freiheit gibt, wieder zu essen und zu lächeln,',
+    titleEm: 'fülle dieses Formular aus.',
     lead: 'Füllen Sie das Formular aus – wir melden uns innerhalb von 24 Stunden, um Ihren Termin mit Diagnose und Festpreisangebot zu vereinbaren.',
     benefits: ['Feste Zähne an einem Tag', 'Komplette Mundsanierung', 'Persönliche Betreuung', 'Finanzierung über 3 bis 72 Monate'],
     callUs: 'Telefon',

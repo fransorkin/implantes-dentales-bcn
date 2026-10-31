@@ -192,8 +192,8 @@ export default {
   },
   contact: {
     eyebrow: 'Primera visita',
-    title: 'Solicite su valoración.',
-    titleEm: 'La primera visita es gratuita.',
+    title: 'Si estás dispuesto/a a comenzar con el cambio que te dé la libertad de volver a comer y sonreír,',
+    titleEm: 'rellena este formulario.',
     lead: 'Complete el formulario y le contactaremos en menos de 24 horas para concertar su cita, con diagnóstico y presupuesto cerrado.',
     benefits: ['Dientes fijos en un día', 'Rehabilitación oral completa', 'Atención personalizada', 'Financiación de 3 a 72 meses'],
     callUs: 'Teléfono',

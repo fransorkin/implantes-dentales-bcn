@@ -192,8 +192,8 @@ export default {
   },
   contact: {
     eyebrow: 'Primera visita',
-    title: 'Sol·liciti la seva valoració.',
-    titleEm: 'La primera visita és gratuïta.',
+    title: 'Si estàs disposat/ada a començar el canvi que et doni la llibertat de tornar a menjar i somriure,',
+    titleEm: 'omple aquest formulari.',
     lead: 'Ompli el formulari i el contactarem en menys de 24 hores per concertar la seva cita, amb diagnòstic i pressupost tancat.',
     benefits: ['Dents fixes en un dia', 'Rehabilitació oral completa', 'Atenció personalitzada', 'Finançament de 3 a 72 mesos'],
     callUs: 'Telèfon',

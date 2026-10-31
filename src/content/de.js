@@ -181,6 +181,7 @@ export default {
     otherLink: 'Schreiben Sie uns per WhatsApp',
     items: [
       { q: 'Ist eine Implantatbehandlung schmerzhaft?', a: 'Nein. Sie erfolgt unter örtlicher Betäubung und auf Wunsch mit Sedierung. Die meisten Patienten empfinden sie als deutlich einfacher als erwartet. Danach kann für einige Tage eine leichte Schwellung auftreten, die sich gut mit Medikamenten behandeln lässt.' },
+      { q: 'Kann ich mich unter Sedierung operieren lassen?', a: 'Ja. Die Klinik verfügt über die offizielle behördliche Zulassung, Eingriffe unter Sedierung durchzuführen, wenn Sie es wünschen. So bleiben Sie während des gesamten Eingriffs entspannt und ruhig.' },
       { q: 'Kann ich die Praxis am selben Tag mit festen Zähnen verlassen?', a: 'In vielen Fällen ja. Mit den Techniken All-on-4 und All-on-6 mit Sofortbelastung setzen wir die Implantate und einen festsitzenden provisorischen Zahnersatz in derselben Sitzung ein.' },
       { q: 'Was kosten Zahnimplantate in Barcelona?', a: 'Das hängt vom jeweiligen Fall ab: Anzahl der Zähne, Art des Zahnersatzes oder notwendiger Knochenaufbau. Die Erstberatung ist kostenlos und umfasst Diagnose und ein Festpreisangebot – unverbindlich.' },
       { q: 'Wie lange halten Implantate?', a: 'Sie sind auf viele Jahre ausgelegt, bei richtiger Pflege sogar ein Leben lang. Wir erklären Ihnen, wie Sie sie pflegen, um ihre Lebensdauer zu maximieren.' },

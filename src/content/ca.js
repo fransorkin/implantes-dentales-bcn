@@ -185,7 +185,7 @@ export default {
     otherLink: "Escrigui'ns per WhatsApp",
     items: [
       { q: 'El tractament amb implants fa mal?', a: "No. Es realitza amb anestèsia local i, si el pacient ho desitja, amb sedació conscient. La majoria coincideix que és molt més senzill del que s'imaginava. Després pot aparèixer una lleugera inflamació durant uns dies, controlable amb medicació." },
-      { q: 'Puc operar-me sota sedació?', a: 'Sí. Tenim el registre sanitari oficial per fer cirurgies sota sedació, si així ho desitja. D\'aquesta manera passarà la intervenció relaxat i tranquil.' },
+      { q: 'Puc operar-me sota sedació?', a: 'Sí. Tenim el registre sanitari oficial per fer cirurgies sota sedació, i ho recomanem pel seu benestar. D\'aquesta manera passarà la intervenció relaxat i tranquil.' },
       { q: 'Puc sortir amb dents fixes el mateix dia?', a: 'Sí, gairebé la totalitat dels pacients. Amb les tècniques All-on-4 i All-on-6 amb càrrega immediata col·loquem els implants i una pròtesi fixa provisional en la mateixa sessió.' },
       { q: 'Quant costen els implants a Barcelona?', a: "Depèn de cada cas: nombre de peces, tipus de pròtesi o necessitat de regeneració òssia. La primera visita és gratuïta i inclou diagnòstic i pressupost tancat, sense compromís." },
       { q: 'Quant duren els implants?', a: "Estan dissenyats per durar molts anys, fins i tot tota la vida amb un manteniment adequat. Li expliquem com cuidar-los per allargar al màxim la seva durada." },

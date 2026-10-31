@@ -3,6 +3,7 @@ import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Minus, MoveHorizontal, 
 import { useState } from 'react'
 import { brand, cases } from '../data'
 import { useT } from '../i18n'
+import { InstagramIcon } from './Header'
 import { MaskText, Reveal, item, stagger } from './motion'
 import { Eyebrow } from './Treatments'
 
@@ -209,37 +210,63 @@ export function Testimonials() {
           </Reveal>
         </div>
 
-        <motion.ul
-          className="mt-14 grid gap-4 md:grid-cols-3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-10% 0px' }}
-        >
-          {r.items.map((x) => (
-            <motion.li key={x.name} variants={item} className="flex flex-col rounded-2xl border border-line bg-porcelain p-6 sm:p-7">
-              <div className="flex gap-0.5" role="img" aria-label={r.stars}>
-                {Array.from({ length: 5 }).map((_, k) => (
-                  <Star key={k} className="size-3.5 fill-gold text-gold" aria-hidden="true" />
-                ))}
-              </div>
-              <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed">“{x.quote}”</blockquote>
-              <footer className="mt-6 flex items-center gap-3 border-t border-line pt-5">
-                <span className="flex size-9 items-center justify-center rounded-full bg-brand-pale text-xs font-semibold text-brand">
-                  {x.name
-                    .split(' ')
-                    .slice(0, 2)
-                    .map((w) => w[0])
-                    .join('')}
-                </span>
-                <span className="leading-tight">
-                  <span className="block text-sm font-medium">{x.name}</span>
-                  <span className="text-xs text-muted">{r.treatment}</span>
-                </span>
-              </footer>
-            </motion.li>
-          ))}
-        </motion.ul>
+        <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-7">
+            <motion.ul
+              className="grid gap-4"
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-10% 0px' }}
+            >
+              {r.items.map((x) => (
+                <motion.li key={x.name} variants={item} className="flex flex-col rounded-2xl border border-line bg-porcelain p-6 sm:p-7">
+                  <div className="flex gap-0.5" role="img" aria-label={r.stars}>
+                    {Array.from({ length: 5 }).map((_, k) => (
+                      <Star key={k} className="size-3.5 fill-gold text-gold" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed">“{x.quote}”</blockquote>
+                  <footer className="mt-6 flex items-center gap-3 border-t border-line pt-5">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-brand-pale text-xs font-semibold text-brand">
+                      {x.name
+                        .split(' ')
+                        .slice(0, 2)
+                        .map((w) => w[0])
+                        .join('')}
+                    </span>
+                    <span className="leading-tight">
+                      <span className="block text-sm font-medium">{x.name}</span>
+                      <span className="text-xs text-muted">{r.treatment}</span>
+                    </span>
+                  </footer>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+
+          <Reveal delay={0.1} className="lg:col-span-5 lg:sticky lg:top-28">
+            <div className="mx-auto w-full max-w-[400px] overflow-hidden rounded-2xl border border-line bg-white">
+              <iframe
+                src={`${brand.instagramReel}embed/`}
+                title={r.videoTitle}
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+                className="block h-[690px] w-full"
+              />
+            </div>
+            <a
+              href={brand.instagramReel}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-4 flex w-fit items-center gap-2 text-sm font-medium text-muted hover:text-brand"
+            >
+              <InstagramIcon className="size-4" />
+              {r.videoLink}
+            </a>
+          </Reveal>
+        </div>
 
         <Reveal className="mt-10 flex flex-col items-center gap-3">
           <a href={brand.reviewsHref} target="_blank" rel="noopener noreferrer" className="btn-outline-dark group">

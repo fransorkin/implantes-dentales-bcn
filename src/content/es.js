@@ -141,6 +141,8 @@ export default {
     note: 'Cada caso es distinto y los resultados varían según el paciente.',
   },
   testimonials: {
+    videoTitle: 'Vídeo de Instagram de Implantes Dentales Barcelona',
+    videoLink: 'Ver en Instagram',
     eyebrow: 'Opiniones',
     title: 'La experiencia',
     titleEm: 'de nuestros pacientes.',

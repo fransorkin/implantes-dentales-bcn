@@ -141,6 +141,8 @@ export default {
     note: 'Cada cas és diferent i els resultats varien segons el pacient.',
   },
   testimonials: {
+    videoTitle: 'Vídeo d\'Instagram d\'Implantes Dentales Barcelona',
+    videoLink: 'Veure a Instagram',
     eyebrow: 'Opinions',
     title: "L'experiència",
     titleEm: 'dels nostres pacients.',

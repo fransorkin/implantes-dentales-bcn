@@ -120,6 +120,11 @@ export default {
     location: 'Sant Gervasi · Barcelona',
     also: 'Außerdem in der Klinik in Sant Gervasi:',
     others: ['Ästhetische Zahnmedizin', 'Keramikveneers', 'Bleaching', 'Unsichtbare Aligner', 'Familienzahnmedizin'],
+    proEyebrow: 'Für Zahnärzte',
+    proTitle: 'Möchten Sie, dass Dr. Uribe Echevarría in Ihrer Praxis mitarbeitet?',
+    proText: 'Dr. Diego Uribe Echevarría kommt in andere Praxen, um bei Implantatfällen mitzuarbeiten: Planung, geführte Chirurgie und Komplettsanierungen. Schreiben Sie uns und wir senden Ihnen sein Portfolio.',
+    proCta: 'Portfolio anfordern',
+    proWhatsapp: 'Hallo, ich bin Zahnarzt/Zahnärztin und interessiere mich für eine Zusammenarbeit mit Dr. Uribe Echevarría bei Implantatfällen in meiner Praxis. Ich möchte das Portfolio.',
   },
   compare: {
     eyebrow: 'Klinische Fälle',

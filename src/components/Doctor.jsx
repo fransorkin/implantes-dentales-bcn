@@ -1,11 +1,11 @@
 import { motion } from 'motion/react'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Minus, MoveHorizontal, Star } from 'lucide-react'
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight, MessageCircle, Minus, MoveHorizontal, Star } from 'lucide-react'
 import { useState } from 'react'
-import { brand, cases } from '../data'
+import { brand, cases, whatsappHref } from '../data'
 import { useT } from '../i18n'
 import { InstagramIcon } from './Header'
 import { MaskText, Reveal, item, stagger } from './motion'
-import { Eyebrow } from './Treatments'
+import { Eyebrow, Leaf } from './Treatments'
 
 export function Doctor() {
   const t = useT()
@@ -57,6 +57,23 @@ export function Doctor() {
             </ul>
           </Reveal>
         </div>
+      </div>
+
+      <div className="container-x mt-16 sm:mt-20">
+        <Reveal className="flex flex-col gap-6 rounded-3xl bg-ink p-7 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+          <div className="max-w-2xl">
+            <p className="eyebrow flex items-center gap-2 text-brand-soft">
+              <Leaf />
+              {d.proEyebrow}
+            </p>
+            <h3 className="display mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)]">{d.proTitle}</h3>
+            <p className="mt-3 text-white/70">{d.proText}</p>
+          </div>
+          <a href={whatsappHref(d.proWhatsapp)} target="_blank" rel="noopener noreferrer" className="btn-light shrink-0 self-start lg:self-center">
+            <MessageCircle className="size-4" aria-hidden="true" />
+            {d.proCta}
+          </a>
+        </Reveal>
       </div>
     </section>
   )

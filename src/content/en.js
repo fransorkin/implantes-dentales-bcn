@@ -120,6 +120,11 @@ export default {
     location: 'Sant Gervasi · Barcelona',
     also: 'Also available at the Sant Gervasi clinic:',
     others: ['Cosmetic dentistry', 'Porcelain veneers', 'Teeth whitening', 'Clear aligners', 'Family dentistry'],
+    proEyebrow: 'For dentists',
+    proTitle: 'Would you like Dr. Uribe Echevarría to collaborate at your clinic?',
+    proText: 'Dr. Diego Uribe Echevarría travels to other clinics to collaborate on implant cases: planning, guided surgery and full-arch rehabilitation. Get in touch and we will send you his portfolio.',
+    proCta: 'I want the portfolio',
+    proWhatsapp: 'Hello, I am a dentist and I am interested in Dr. Uribe Echevarría collaborating at my clinic on implant cases. I would like the portfolio.',
   },
   compare: {
     eyebrow: 'Clinical cases',

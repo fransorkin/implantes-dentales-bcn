@@ -120,6 +120,11 @@ export default {
     location: 'Sant Gervasi · Barcelona',
     also: 'También en la clínica de Sant Gervasi:',
     others: ['Estética dental', 'Carillas de porcelana', 'Blanqueamiento', 'Ortodoncia invisible', 'Odontología familiar'],
+    proEyebrow: 'Para dentistas',
+    proTitle: '¿Quiere que el Dr. Uribe Echevarría colabore en su clínica?',
+    proText: 'El Dr. Diego Uribe Echevarría se desplaza a otras clínicas para colaborar en casos de implantología: planificación, cirugía guiada y rehabilitaciones completas. Escríbanos y le enviaremos su portfolio.',
+    proCta: 'Quiero el portfolio',
+    proWhatsapp: 'Hola, soy dentista y me interesa que el Dr. Uribe Echevarría colabore en mi clínica en casos de implantología. Quiero el portfolio.',
   },
   compare: {
     eyebrow: 'Casos clínicos',

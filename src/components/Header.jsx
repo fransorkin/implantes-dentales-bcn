@@ -7,6 +7,17 @@ import { goToForm } from './Contact'
 import LanguageSwitcher from './LanguageSwitcher'
 import { ease } from './motion'
 
+// lucide-react ya no incluye logos de marcas
+export function InstagramIcon({ className = 'size-5' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  )
+}
+
 export function Logo({ onClick, onDark = false }) {
   const t = useT()
   return (
@@ -81,6 +92,15 @@ export default function Header() {
             >
               <Phone className="size-4" aria-hidden="true" />
               <span className="tabular-nums whitespace-nowrap">{brand.phone}</span>
+            </a>
+            <a
+              href={brand.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden size-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-brand hover:text-brand sm:inline-flex"
+              aria-label="Instagram @implantesdentalesbcn"
+            >
+              <InstagramIcon />
             </a>
             <a href="#formulario" onClick={goToForm} className="btn-brand hidden !min-h-11 !px-5 text-[0.88rem] md:inline-flex">
               {t.ui.consultShort}
@@ -157,6 +177,10 @@ export default function Header() {
               <a href={brand.phoneHref} className="btn-outline-light">
                 <Phone className="size-4" aria-hidden="true" />
                 {brand.phone}
+              </a>
+              <a href={brand.instagram} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
+                <InstagramIcon className="size-4" />
+                @implantesdentalesbcn
               </a>
             </div>
           </motion.div>

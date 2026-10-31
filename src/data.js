@@ -17,6 +17,8 @@ export const brand = {
   reviewsHref: 'https://www.google.com/search?q=clinica+dr+uribe+echevarria',
   instagram: 'https://www.instagram.com/implantesdentalesbcn/',
   instagramDoctor: 'https://www.instagram.com/druribeechevarria',
+  // Reel que aparece junto a las reseñas
+  instagramReel: 'https://www.instagram.com/reel/DRjxgugjO3A/',
   facebookDoctor: 'https://www.facebook.com/dr.uribeechevarria',
 }
 

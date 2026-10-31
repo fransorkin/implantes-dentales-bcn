@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import { brand, stats, whatsappHref } from '../data'
 import { useT } from '../i18n'
+import { goToForm } from './Contact'
 import { CountUp, ease } from './motion'
 
 const rise = (delay) => ({
@@ -22,8 +23,12 @@ export default function Hero() {
         <div className="lg:col-span-7">
           <motion.p
             {...rise(0.05)}
-            className="inline-flex rounded-full bg-ink px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+            className="inline-flex items-center gap-2.5 rounded-full bg-ink px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white"
           >
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-leaf opacity-75 motion-reduce:animate-none" />
+              <span className="relative inline-flex size-2 rounded-full bg-leaf" />
+            </span>
             {h.eyebrow}
           </motion.p>
 
@@ -40,7 +45,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div {...rise(0.3)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#contacto" className="btn-brand group">
+            <a href="#formulario" onClick={goToForm} className="btn-brand group">
               {t.ui.consult}
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </a>
@@ -58,12 +63,12 @@ export default function Hero() {
         <motion.figure {...rise(0.2)} className="lg:col-span-5">
           <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl bg-ink lg:max-w-none">
             <img
-              src="/img/dr-diego.jpg"
+              src="/img/dr-diego-cirugia.jpg"
               alt={h.photoAlt}
-              width="400"
-              height="440"
+              width="800"
+              height="1000"
               fetchPriority="high"
-              className="mx-auto aspect-[400/410] w-full max-w-md object-cover object-top mix-blend-lighten"
+              className="aspect-[4/5] w-full object-cover"
             />
             <figcaption className="absolute inset-x-3 bottom-3 rounded-2xl bg-white px-5 py-3.5 text-ink">
               <span className="block text-[0.95rem] font-semibold">{brand.doctor}</span>

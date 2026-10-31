@@ -1,11 +1,24 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
-import { ArrowUpRight, Check, Loader2, MapPin, MessageCircle, Phone, Plus } from 'lucide-react'
+import { ArrowUpRight, Check, MapPin, MessageCircle, Phone, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { brand, clinics, whatsappHref } from '../data'
 import { useT } from '../i18n'
 import { Logo } from './Header'
 import { MaskText, Reveal, ease, item, stagger } from './motion'
-import { Eyebrow } from './Treatments'
+import { Eyebrow, Leaf } from './Treatments'
+
+// Lleva al formulario de contacto y pone el cursor en el primer campo.
+// Salto directo: el scroll suave se corta a medio camino al pasar por la sección fija de tratamientos.
+// Se espera un instante por si se acaba de cerrar el menú móvil, que bloquea el scroll.
+export const goToForm = (ev) => {
+  ev?.preventDefault()
+  setTimeout(() => {
+    const form = document.getElementById('formulario')
+    if (!form) return
+    form.scrollIntoView({ behavior: 'instant', block: 'start' })
+    form.querySelector('input')?.focus({ preventScroll: true })
+  }, 50)
+}
 
 export function Clinics() {
   const t = useT()
@@ -151,12 +164,46 @@ function Field({ label, id, error, children, className = '' }) {
   )
 }
 
+const yesNo = (f) => [
+  ['si', f.yes],
+  ['no', f.no],
+]
+const docOptions = (f) => [
+  ['dni', 'DNI'],
+  ['nie', 'NIE'],
+  ['pasaporte', f.passport],
+]
+
+function Choices({ legend, name, options, error }) {
+  return (
+    <fieldset className="sm:col-span-2" aria-describedby={error ? `${name}-error` : undefined}>
+      <legend className="mb-2 block text-sm font-medium text-ink">{legend}</legend>
+      <div className="flex flex-wrap gap-2">
+        {options.map(([value, label]) => (
+          <label key={value} className="cursor-pointer">
+            <input type="radio" name={name} value={value} className="peer sr-only" aria-invalid={!!error} />
+            <span className="inline-flex min-h-11 min-w-20 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition-colors duration-200 peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand/40 hover:border-ink/30">
+              {label}
+            </span>
+          </label>
+        ))}
+      </div>
+      {error && (
+        <p id={`${name}-error`} className="mt-2 text-sm text-[#b42318]" role="alert">
+          {error}
+        </p>
+      )}
+    </fieldset>
+  )
+}
+
 export function Contact() {
   const t = useT()
   const c = t.contact
   const f = c.form
   const [status, setStatus] = useState('idle')
   const [errors, setErrors] = useState({})
+  const [waHref, setWaHref] = useState('')
 
   const onSubmit = (ev) => {
     ev.preventDefault()
@@ -167,15 +214,36 @@ export function Contact() {
     if (!/^\+?\d{9,15}$/.test((d.get('telefono') || '').replace(/[\s-]/g, ''))) e.telefono = f.errPhone
     const email = d.get('email')?.trim()
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = f.errEmail
+    for (const name of ['tac', 'financiacion', 'documento']) if (!d.get(name)) e[name] = f.errChoice
     if (!d.get('privacidad')) e.privacidad = f.errConsent
     setErrors(e)
     if (Object.keys(e).length) {
       form.querySelector(`[name="${Object.keys(e)[0]}"]`)?.focus()
       return
     }
-    // TODO: conectar con el CRM o servicio de formularios del cliente (incluir el idioma: t.meta / lang)
-    setStatus('sending')
-    setTimeout(() => setStatus('sent'), 1200)
+    // La solicitud se envía por WhatsApp: se abre con el mensaje ya escrito y el paciente lo envía
+    const treatment = t.treatments.items.find((it) => it.id === d.get('tratamiento'))?.label ?? f.treatmentDefault
+    const clinic = clinics.find((cl) => cl.id === d.get('clinica'))
+    const message = d.get('mensaje')?.trim()
+    const text = [
+      f.waIntro,
+      '',
+      `${f.waName}: ${d.get('nombre').trim()}`,
+      `${f.waPhone}: ${d.get('telefono').trim()}`,
+      email ? `${f.waEmail}: ${email}` : null,
+      `${f.waTreatment}: ${treatment}`,
+      `${f.waClinic}: ${clinic.city}`,
+      `${f.waTac}: ${d.get('tac') === 'si' ? f.yes : f.no}`,
+      `${f.waFinance}: ${d.get('financiacion') === 'si' ? f.yes : f.no}`,
+      `${f.waDoc}: ${docOptions(f).find(([v]) => v === d.get('documento'))[1]}`,
+      message ? `${f.waMessage}: ${message}` : null,
+    ]
+      .filter((line) => line !== null)
+      .join('\n')
+    const href = whatsappHref(text)
+    setWaHref(href)
+    setStatus('sent')
+    window.open(href, '_blank', 'noopener')
   }
 
   return (
@@ -183,9 +251,12 @@ export function Contact() {
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="eyebrow text-white/90">{c.eyebrow}</p>
+            <p className="eyebrow flex items-center gap-2 text-white/90">
+              <Leaf />
+              {c.eyebrow}
+            </p>
           </Reveal>
-          <MaskText className="display mt-6 text-[clamp(1.9rem,3.5vw,3rem)]" lines={[c.title, <em key="e" className="!text-white">{c.titleEm}</em>]} />
+          <MaskText className="display mt-6 text-[clamp(1.6rem,2.6vw,2.4rem)]" lines={[c.title, <em key="e" className="!text-white">{c.titleEm}</em>]} />
           <Reveal delay={0.1} as="p" className="mt-6 max-w-md text-lg text-white/90">
             {c.lead}
           </Reveal>
@@ -193,7 +264,7 @@ export function Contact() {
             <ul className="mt-10 grid gap-3">
               {c.benefits.map((b) => (
                 <li key={b} className="flex items-center gap-3">
-                  <span className="flex size-6 items-center justify-center rounded-full bg-white text-brand">
+                  <span className="flex size-6 items-center justify-center rounded-full bg-white text-leaf">
                     <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
                   </span>
                   {b}
@@ -216,7 +287,7 @@ export function Contact() {
         </div>
 
         <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
-          <div className="rounded-3xl bg-white p-6 text-ink sm:p-9">
+          <div id="formulario" className="rounded-3xl bg-white p-6 text-ink sm:p-9">
             <AnimatePresence mode="wait">
               {status === 'sent' ? (
                 <motion.div
@@ -243,6 +314,10 @@ export function Contact() {
                   </svg>
                   <h3 className="display mt-6 text-3xl">{f.okTitle}</h3>
                   <p className="mt-3 max-w-xs text-muted">{f.okText}</p>
+                  <a href={waHref} target="_blank" rel="noopener noreferrer" className="btn-brand mt-8">
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    {f.okButton}
+                  </a>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={onSubmit} noValidate exit={{ opacity: 0 }} className="grid gap-5 sm:grid-cols-2">
@@ -286,6 +361,9 @@ export function Contact() {
                       ))}
                     </select>
                   </Field>
+                  <Choices legend={f.tacQ} name="tac" options={yesNo(f)} error={errors.tac} />
+                  <Choices legend={f.financeQ} name="financiacion" options={yesNo(f)} error={errors.financiacion} />
+                  <Choices legend={f.docQ} name="documento" options={docOptions(f)} error={errors.documento} />
                   <Field label={f.message} id="mensaje" className="sm:col-span-2">
                     <textarea id="mensaje" name="mensaje" rows="3" className={`${inputCls} resize-none py-3`} placeholder={f.messagePh} />
                   </Field>
@@ -312,15 +390,9 @@ export function Contact() {
                       </p>
                     )}
                   </div>
-                  <button type="submit" disabled={status === 'sending'} className="btn-brand mt-2 disabled:cursor-wait disabled:opacity-70 sm:col-span-2">
-                    {status === 'sending' ? (
-                      <>
-                        <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                        {f.sending}
-                      </>
-                    ) : (
-                      f.submit
-                    )}
+                  <button type="submit" className="btn-brand mt-2 sm:col-span-2">
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    {f.submit}
                   </button>
                   <p className="text-center text-xs text-muted sm:col-span-2">{t.ui.reassurance}</p>
                 </motion.form>
@@ -341,7 +413,7 @@ export function Footer() {
       <div className="container-x">
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo />
+            <Logo onDark />
             <p className="mt-6 max-w-xs text-sm text-white/55">{ft.tagline}</p>
           </div>
           <nav aria-label={ft.footerNav} className="md:col-span-3 md:col-start-6">
@@ -424,7 +496,7 @@ export function MobileBar() {
             <Phone className="size-4" aria-hidden="true" />
             {t.ui.call}
           </a>
-          <a href="#contacto" className="flex min-h-12 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+          <a href="#formulario" onClick={goToForm} className="flex min-h-12 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
             {t.ui.consultShort}
           </a>
         </motion.div>

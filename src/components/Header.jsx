@@ -3,33 +3,31 @@ import { Menu, Phone, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { brand } from '../data'
 import { useT } from '../i18n'
+import { goToForm } from './Contact'
 import LanguageSwitcher from './LanguageSwitcher'
 import { ease } from './motion'
 
-export function Mark({ className = 'size-9' }) {
+// lucide-react ya no incluye logos de marcas
+export function InstagramIcon({ className = 'size-5' }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <path
-        d="M13 5.500c-5 0-8 4-8 9 0 5 2.600 8.300 3.800 14 .9 4.200 2.200 7 4.200 7 2.500 0 3-4.300 3.900-7.800.5-2 1.300-3.200 3.100-3.200s2.600 1.200 3.100 3.200c.9 3.500 1.400 7.800 3.900 7.800 2 0 3.300-2.800 4.200-7 1.200-5.700 3.800-9 3.800-14 0-5-3-9-8-9-3.300 0-4.700 1.900-7 1.900s-3.700-1.900-7-1.900Z"
-        fill="none"
-        stroke="var(--color-brand)"
-        strokeWidth="2.400"
-        strokeLinejoin="round"
-      />
-      <path d="m14 14.500 4.300 4.300 8-8" fill="none" stroke="#25b06f" strokeWidth="2.800" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
     </svg>
   )
 }
 
-export function Logo({ onClick }) {
+export function Logo({ onClick, onDark = false }) {
   const t = useT()
   return (
-    <a href="#inicio" onClick={onClick} className="flex items-center gap-3" aria-label={`${brand.name}, ${t.ui.home}`}>
-      <Mark />
-      <span className="leading-none">
-        <span className="block text-[0.9rem] font-semibold uppercase tracking-wide">Implantes Dentales</span>
-        <span className="mt-1 block text-[0.68rem] font-semibold uppercase tracking-[0.42em]">Barcelona</span>
-      </span>
+    <a
+      href="#inicio"
+      onClick={onClick}
+      className={`flex shrink-0 items-center ${onDark ? 'w-fit rounded-xl bg-white px-3 py-1.5' : ''}`}
+      aria-label={`${brand.name}, ${t.ui.home}`}
+    >
+      <img src="/img/logo.png" alt="" width="289" height="154" className={onDark ? 'h-12 w-auto sm:h-14' : 'h-14 w-auto sm:h-16'} />
     </a>
   )
 }
@@ -95,7 +93,16 @@ export default function Header() {
               <Phone className="size-4" aria-hidden="true" />
               <span className="tabular-nums whitespace-nowrap">{brand.phone}</span>
             </a>
-            <a href="#contacto" className="btn-brand hidden !min-h-11 !px-5 text-[0.88rem] md:inline-flex">
+            <a
+              href={brand.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden size-11 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-brand hover:text-brand sm:inline-flex"
+              aria-label="Instagram @implantesdentalesbcn"
+            >
+              <InstagramIcon />
+            </a>
+            <a href="#formulario" onClick={goToForm} className="btn-brand hidden !min-h-11 !px-5 text-[0.88rem] md:inline-flex">
               {t.ui.consultShort}
             </a>
             <LanguageSwitcher />
@@ -127,7 +134,7 @@ export default function Header() {
             transition={{ duration: 0.4 }}
           >
             <div className="container-x flex h-20 shrink-0 items-center justify-between">
-              <Logo onClick={() => setOpen(false)} />
+              <Logo onDark onClick={() => setOpen(false)} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -158,12 +165,22 @@ export default function Header() {
             </motion.ul>
             <div className="container-x mt-auto grid gap-3 pt-8 pb-10">
               <LanguageSwitcher variant="inline" />
-              <a href="#contacto" onClick={() => setOpen(false)} className="btn-light mt-2">
+              <a
+                href="#formulario"
+                onClick={(ev) => {
+                  setOpen(false)
+                  goToForm(ev)
+                }}
+                className="btn-light mt-2">
                 {t.ui.consult}
               </a>
               <a href={brand.phoneHref} className="btn-outline-light">
                 <Phone className="size-4" aria-hidden="true" />
                 {brand.phone}
+              </a>
+              <a href={brand.instagram} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
+                <InstagramIcon className="size-4" />
+                @implantesdentalesbcn
               </a>
             </div>
           </motion.div>

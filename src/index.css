@@ -17,6 +17,9 @@
   --color-brand-soft: #b9d4f7;
   --color-brand-pale: #e4edfa;
   --color-gold: #e8b64c;
+  /* Verde de la hoja del logo */
+  --color-leaf: #57b14e;
+  --color-leaf-pale: #e8f5e6;
 
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }

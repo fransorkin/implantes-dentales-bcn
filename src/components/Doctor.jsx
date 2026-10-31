@@ -1,10 +1,11 @@
 import { motion } from 'motion/react'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Minus, MoveHorizontal, Star } from 'lucide-react'
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight, MessageCircle, Minus, MoveHorizontal, Star } from 'lucide-react'
 import { useState } from 'react'
-import { brand, cases } from '../data'
+import { brand, cases, whatsappHref } from '../data'
 import { useT } from '../i18n'
+import { InstagramIcon } from './Header'
 import { MaskText, Reveal, item, stagger } from './motion'
-import { Eyebrow } from './Treatments'
+import { Eyebrow, Leaf } from './Treatments'
 
 export function Doctor() {
   const t = useT()
@@ -21,7 +22,7 @@ export function Doctor() {
               width="400"
               height="440"
               loading="lazy"
-              className="aspect-[400/410] w-full object-cover object-top mix-blend-lighten"
+              className="aspect-[400/410] w-full object-cover object-top"
             />
             <figcaption className="absolute inset-x-3 bottom-3 rounded-2xl bg-white px-5 py-3.5 text-ink">
               <span className="block text-[0.95rem] font-semibold">{brand.doctor}</span>
@@ -45,11 +46,6 @@ export function Doctor() {
             {d.p2}
           </Reveal>
 
-          <Reveal delay={0.2} as="blockquote" className="mt-8 border-l-2 border-brand pl-5">
-            <p className="text-xl font-semibold tracking-tight">“{d.quote}”</p>
-            <footer className="mt-1 text-sm text-muted">{brand.doctorShort}</footer>
-          </Reveal>
-
           <Reveal delay={0.25} className="mt-8">
             <p className="text-sm text-muted">{d.also}</p>
             <ul className="mt-3 flex flex-wrap gap-2">
@@ -61,6 +57,23 @@ export function Doctor() {
             </ul>
           </Reveal>
         </div>
+      </div>
+
+      <div className="container-x mt-16 sm:mt-20">
+        <Reveal className="flex flex-col gap-6 rounded-3xl bg-ink p-7 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+          <div className="max-w-2xl">
+            <p className="eyebrow flex items-center gap-2 text-brand-soft">
+              <Leaf />
+              {d.proEyebrow}
+            </p>
+            <h3 className="display mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)]">{d.proTitle}</h3>
+            <p className="mt-3 text-white/70">{d.proText}</p>
+          </div>
+          <a href={whatsappHref(d.proWhatsapp)} target="_blank" rel="noopener noreferrer" className="btn-light shrink-0 self-start lg:self-center">
+            <MessageCircle className="size-4" aria-hidden="true" />
+            {d.proCta}
+          </a>
+        </Reveal>
       </div>
     </section>
   )
@@ -175,7 +188,7 @@ export function BeforeAfter() {
               <ul className="mt-4 grid gap-3">
                 {c.after.map((x) => (
                   <li key={x} className="flex gap-3 text-[0.95rem]">
-                    <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                    <Check className="mt-1 size-4 shrink-0 text-leaf" aria-hidden="true" />
                     {x}
                   </li>
                 ))}
@@ -209,37 +222,66 @@ export function Testimonials() {
           </Reveal>
         </div>
 
-        <motion.ul
-          className="mt-14 grid gap-4 md:grid-cols-3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-10% 0px' }}
-        >
-          {r.items.map((x) => (
-            <motion.li key={x.name} variants={item} className="flex flex-col rounded-2xl border border-line bg-porcelain p-6 sm:p-7">
-              <div className="flex gap-0.5" role="img" aria-label={r.stars}>
-                {Array.from({ length: 5 }).map((_, k) => (
-                  <Star key={k} className="size-3.5 fill-gold text-gold" aria-hidden="true" />
-                ))}
-              </div>
-              <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed">“{x.quote}”</blockquote>
-              <footer className="mt-6 flex items-center gap-3 border-t border-line pt-5">
-                <span className="flex size-9 items-center justify-center rounded-full bg-brand-pale text-xs font-semibold text-brand">
-                  {x.name
-                    .split(' ')
-                    .slice(0, 2)
-                    .map((w) => w[0])
-                    .join('')}
-                </span>
-                <span className="leading-tight">
-                  <span className="block text-sm font-medium">{x.name}</span>
-                  <span className="text-xs text-muted">{r.treatment}</span>
-                </span>
-              </footer>
-            </motion.li>
-          ))}
-        </motion.ul>
+        <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-7">
+            <motion.ul
+              className="grid gap-4"
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-10% 0px' }}
+            >
+              {r.items.map((x) => (
+                <motion.li key={x.name} variants={item} className="flex flex-col rounded-2xl border border-line bg-porcelain p-6 sm:p-7">
+                  <div className="flex gap-0.5" role="img" aria-label={r.stars}>
+                    {Array.from({ length: 5 }).map((_, k) => (
+                      <Star key={k} className="size-3.5 fill-gold text-gold" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-[0.95rem] leading-relaxed">“{x.quote}”</blockquote>
+                  <footer className="mt-6 flex items-center gap-3 border-t border-line pt-5">
+                    <span className="flex size-9 items-center justify-center rounded-full bg-brand-pale text-xs font-semibold text-brand">
+                      {x.name
+                        .split(' ')
+                        .slice(0, 2)
+                        .map((w) => w[0])
+                        .join('')}
+                    </span>
+                    <span className="leading-tight">
+                      <span className="block text-sm font-medium">{x.name}</span>
+                      <span className="text-xs text-muted">{r.treatment}</span>
+                    </span>
+                  </footer>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+
+          <Reveal delay={0.1} className="lg:col-span-5 lg:sticky lg:top-28">
+            <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-2xl bg-ink">
+              <video
+                src="/video/reel.mp4"
+                poster="/video/reel-poster.jpg"
+                controls
+                playsInline
+                preload="none"
+                width="720"
+                height="1280"
+                aria-label={r.videoTitle}
+                className="block aspect-[9/16] w-full bg-ink object-cover"
+              />
+            </div>
+            <a
+              href={brand.instagramReel}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-4 flex w-fit items-center gap-2 text-sm font-medium text-muted hover:text-brand"
+            >
+              <InstagramIcon className="size-4" />
+              {r.videoLink}
+            </a>
+          </Reveal>
+        </div>
 
         <Reveal className="mt-10 flex flex-col items-center gap-3">
           <a href={brand.reviewsHref} target="_blank" rel="noopener noreferrer" className="btn-outline-dark group">

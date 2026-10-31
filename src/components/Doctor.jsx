@@ -176,7 +176,7 @@ export function BeforeAfter() {
               <ul className="mt-4 grid gap-3">
                 {c.after.map((x) => (
                   <li key={x} className="flex gap-3 text-[0.95rem]">
-                    <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden="true" />
+                    <Check className="mt-1 size-4 shrink-0 text-leaf" aria-hidden="true" />
                     {x}
                   </li>
                 ))}

@@ -23,8 +23,12 @@ export default function Hero() {
         <div className="lg:col-span-7">
           <motion.p
             {...rise(0.05)}
-            className="inline-flex rounded-full bg-ink px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white"
+            className="inline-flex items-center gap-2.5 rounded-full bg-ink px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white"
           >
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-leaf opacity-75 motion-reduce:animate-none" />
+              <span className="relative inline-flex size-2 rounded-full bg-leaf" />
+            </span>
             {h.eyebrow}
           </motion.p>
 

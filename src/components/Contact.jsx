@@ -5,7 +5,7 @@ import { brand, clinics, whatsappHref } from '../data'
 import { useT } from '../i18n'
 import { Logo } from './Header'
 import { MaskText, Reveal, ease, item, stagger } from './motion'
-import { Eyebrow } from './Treatments'
+import { Eyebrow, Leaf } from './Treatments'
 
 // Lleva al formulario de contacto y pone el cursor en el primer campo.
 // Salto directo: el scroll suave se corta a medio camino al pasar por la sección fija de tratamientos.
@@ -251,7 +251,10 @@ export function Contact() {
       <div className="container-x grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <p className="eyebrow text-white/90">{c.eyebrow}</p>
+            <p className="eyebrow flex items-center gap-2 text-white/90">
+              <Leaf />
+              {c.eyebrow}
+            </p>
           </Reveal>
           <MaskText className="display mt-6 text-[clamp(1.6rem,2.6vw,2.4rem)]" lines={[c.title, <em key="e" className="!text-white">{c.titleEm}</em>]} />
           <Reveal delay={0.1} as="p" className="mt-6 max-w-md text-lg text-white/90">
@@ -261,7 +264,7 @@ export function Contact() {
             <ul className="mt-10 grid gap-3">
               {c.benefits.map((b) => (
                 <li key={b} className="flex items-center gap-3">
-                  <span className="flex size-6 items-center justify-center rounded-full bg-white text-brand">
+                  <span className="flex size-6 items-center justify-center rounded-full bg-white text-leaf">
                     <Check className="size-3.5" strokeWidth={3} aria-hidden="true" />
                   </span>
                   {b}

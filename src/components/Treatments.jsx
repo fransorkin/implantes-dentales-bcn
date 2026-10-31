@@ -6,8 +6,22 @@ import { useT } from '../i18n'
 import { goToForm } from './Contact'
 import { MaskText, Reveal, ease } from './motion'
 
+// Hoja verde como la del logo
+export function Leaf({ className = 'size-3.5' }) {
+  return (
+    <svg viewBox="0 0 16 16" className={`shrink-0 text-leaf ${className}`} aria-hidden="true">
+      <path d="M14 2C7 2 2.500 5.500 2.500 10.500c0 1.300.4 2.400 1 3.300C5 9.500 8 7 11 5.800 8.300 7.600 6 10.200 4.800 14c1 .5 2 .7 3.100.7C12.200 14.700 14 9.800 14 2Z" fill="currentColor" />
+    </svg>
+  )
+}
+
 export function Eyebrow({ children, light = false }) {
-  return <p className={`eyebrow ${light ? 'text-brand-soft' : 'text-brand'}`}>{children}</p>
+  return (
+    <p className={`eyebrow flex items-center gap-2 ${light ? 'text-brand-soft' : 'text-brand'}`}>
+      <Leaf />
+      {children}
+    </p>
+  )
 }
 
 export function Pains() {
@@ -164,7 +178,7 @@ export function Treatments() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, ease, delay: 0.15 + i * 0.06 }}
                       >
-                        <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-brand text-white">
+                        <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-leaf text-white">
                           <Check className="size-3" strokeWidth={3} aria-hidden="true" />
                         </span>
                         <span className="text-[0.98rem]">{pt}</span>

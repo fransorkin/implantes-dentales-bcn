@@ -7,6 +7,19 @@ import { Logo } from './Header'
 import { MaskText, Reveal, ease, item, stagger } from './motion'
 import { Eyebrow } from './Treatments'
 
+// Lleva al formulario de contacto y pone el cursor en el primer campo.
+// Salto directo: el scroll suave se corta a medio camino al pasar por la sección fija de tratamientos.
+// Se espera un instante por si se acaba de cerrar el menú móvil, que bloquea el scroll.
+export const goToForm = (ev) => {
+  ev?.preventDefault()
+  setTimeout(() => {
+    const form = document.getElementById('formulario')
+    if (!form) return
+    form.scrollIntoView({ behavior: 'instant', block: 'start' })
+    form.querySelector('input')?.focus({ preventScroll: true })
+  }, 50)
+}
+
 export function Clinics() {
   const t = useT()
   const c = t.clinics
@@ -234,7 +247,7 @@ export function Contact() {
         </div>
 
         <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
-          <div className="rounded-3xl bg-white p-6 text-ink sm:p-9">
+          <div id="formulario" className="rounded-3xl bg-white p-6 text-ink sm:p-9">
             <AnimatePresence mode="wait">
               {status === 'sent' ? (
                 <motion.div

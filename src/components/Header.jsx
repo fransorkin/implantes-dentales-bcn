@@ -3,6 +3,7 @@ import { Menu, Phone, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { brand } from '../data'
 import { useT } from '../i18n'
+import { goToForm } from './Contact'
 import LanguageSwitcher from './LanguageSwitcher'
 import { ease } from './motion'
 
@@ -95,7 +96,7 @@ export default function Header() {
               <Phone className="size-4" aria-hidden="true" />
               <span className="tabular-nums whitespace-nowrap">{brand.phone}</span>
             </a>
-            <a href="#contacto" className="btn-brand hidden !min-h-11 !px-5 text-[0.88rem] md:inline-flex">
+            <a href="#formulario" onClick={goToForm} className="btn-brand hidden !min-h-11 !px-5 text-[0.88rem] md:inline-flex">
               {t.ui.consultShort}
             </a>
             <LanguageSwitcher />
@@ -158,7 +159,13 @@ export default function Header() {
             </motion.ul>
             <div className="container-x mt-auto grid gap-3 pt-8 pb-10">
               <LanguageSwitcher variant="inline" />
-              <a href="#contacto" onClick={() => setOpen(false)} className="btn-light mt-2">
+              <a
+                href="#formulario"
+                onClick={(ev) => {
+                  setOpen(false)
+                  goToForm(ev)
+                }}
+                className="btn-light mt-2">
                 {t.ui.consult}
               </a>
               <a href={brand.phoneHref} className="btn-outline-light">

@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import { brand, stats, whatsappHref } from '../data'
 import { useT } from '../i18n'
+import { goToForm } from './Contact'
 import { CountUp, ease } from './motion'
 
 const rise = (delay) => ({
@@ -40,7 +41,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div {...rise(0.3)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#contacto" className="btn-brand group">
+            <a href="#formulario" onClick={goToForm} className="btn-brand group">
               {t.ui.consult}
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </a>

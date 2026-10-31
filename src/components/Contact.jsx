@@ -164,6 +164,39 @@ function Field({ label, id, error, children, className = '' }) {
   )
 }
 
+const yesNo = (f) => [
+  ['si', f.yes],
+  ['no', f.no],
+]
+const docOptions = (f) => [
+  ['dni', 'DNI'],
+  ['nie', 'NIE'],
+  ['pasaporte', f.passport],
+]
+
+function Choices({ legend, name, options, error }) {
+  return (
+    <fieldset className="sm:col-span-2" aria-describedby={error ? `${name}-error` : undefined}>
+      <legend className="mb-2 block text-sm font-medium text-ink">{legend}</legend>
+      <div className="flex flex-wrap gap-2">
+        {options.map(([value, label]) => (
+          <label key={value} className="cursor-pointer">
+            <input type="radio" name={name} value={value} className="peer sr-only" aria-invalid={!!error} />
+            <span className="inline-flex min-h-11 min-w-20 items-center justify-center rounded-full border border-line px-5 text-sm font-medium text-ink transition-colors duration-200 peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand/40 hover:border-ink/30">
+              {label}
+            </span>
+          </label>
+        ))}
+      </div>
+      {error && (
+        <p id={`${name}-error`} className="mt-2 text-sm text-[#b42318]" role="alert">
+          {error}
+        </p>
+      )}
+    </fieldset>
+  )
+}
+
 export function Contact() {
   const t = useT()
   const c = t.contact
@@ -181,6 +214,7 @@ export function Contact() {
     if (!/^\+?\d{9,15}$/.test((d.get('telefono') || '').replace(/[\s-]/g, ''))) e.telefono = f.errPhone
     const email = d.get('email')?.trim()
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = f.errEmail
+    for (const name of ['tac', 'financiacion', 'documento']) if (!d.get(name)) e[name] = f.errChoice
     if (!d.get('privacidad')) e.privacidad = f.errConsent
     setErrors(e)
     if (Object.keys(e).length) {
@@ -196,12 +230,15 @@ export function Contact() {
       '',
       `${f.waName}: ${d.get('nombre').trim()}`,
       `${f.waPhone}: ${d.get('telefono').trim()}`,
-      email && `${f.waEmail}: ${email}`,
+      email ? `${f.waEmail}: ${email}` : null,
       `${f.waTreatment}: ${treatment}`,
       `${f.waClinic}: ${clinic.city}`,
-      message && `${f.waMessage}: ${message}`,
+      `${f.waTac}: ${d.get('tac') === 'si' ? f.yes : f.no}`,
+      `${f.waFinance}: ${d.get('financiacion') === 'si' ? f.yes : f.no}`,
+      `${f.waDoc}: ${docOptions(f).find(([v]) => v === d.get('documento'))[1]}`,
+      message ? `${f.waMessage}: ${message}` : null,
     ]
-      .filter((line) => typeof line === 'string')
+      .filter((line) => line !== null)
       .join('\n')
     const href = whatsappHref(text)
     setWaHref(href)
@@ -321,6 +358,9 @@ export function Contact() {
                       ))}
                     </select>
                   </Field>
+                  <Choices legend={f.tacQ} name="tac" options={yesNo(f)} error={errors.tac} />
+                  <Choices legend={f.financeQ} name="financiacion" options={yesNo(f)} error={errors.financiacion} />
+                  <Choices legend={f.docQ} name="documento" options={docOptions(f)} error={errors.documento} />
                   <Field label={f.message} id="mensaje" className="sm:col-span-2">
                     <textarea id="mensaje" name="mensaje" rows="3" className={`${inputCls} resize-none py-3`} placeholder={f.messagePh} />
                   </Field>

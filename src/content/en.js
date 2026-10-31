@@ -117,7 +117,6 @@ export default {
     titleEm: 'an implant dentistry specialist.',
     p1: 'Dr. Diego Uribe Echevarría heads the Sant Gervasi clinic, combining reconstructive and aesthetic dentistry. His approach is comprehensive: he relates the shape and function of the face to the shape, size and colour of the teeth.',
     p2: 'He works with digital and 3D dentistry and collaborates with leading dental laboratories in Barcelona. Every patient receives personalised care, from the first visit to follow-up.',
-    quote: 'Our goal: a result that is undetectable.',
     location: 'Sant Gervasi · Barcelona',
     also: 'Also available at the Sant Gervasi clinic:',
     others: ['Cosmetic dentistry', 'Porcelain veneers', 'Teeth whitening', 'Clear aligners', 'Family dentistry'],

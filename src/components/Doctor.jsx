@@ -46,11 +46,6 @@ export function Doctor() {
             {d.p2}
           </Reveal>
 
-          <Reveal delay={0.2} as="blockquote" className="mt-8 border-l-2 border-brand pl-5">
-            <p className="text-xl font-semibold tracking-tight">“{d.quote}”</p>
-            <footer className="mt-1 text-sm text-muted">{brand.doctorShort}</footer>
-          </Reveal>
-
           <Reveal delay={0.25} className="mt-8">
             <p className="text-sm text-muted">{d.also}</p>
             <ul className="mt-3 flex flex-wrap gap-2">

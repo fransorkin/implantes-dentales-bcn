@@ -117,7 +117,6 @@ export default {
     titleEm: 'eines Implantologie-Spezialisten.',
     p1: 'Dr. Diego Uribe Echevarría leitet die Klinik in Sant Gervasi und verbindet rekonstruktive mit ästhetischer Zahnmedizin. Sein Ansatz ist ganzheitlich: Er stimmt Form und Funktion des Gesichts auf Form, Größe und Farbe der Zähne ab.',
     p2: 'Er arbeitet mit digitaler und 3D-Zahnmedizin und kooperiert mit führenden Dentallaboren in Barcelona. Jeder Patient wird persönlich betreut – von der Erstberatung bis zur Nachsorge.',
-    quote: 'Unser Ziel: ein Ergebnis, das man nicht erkennt.',
     location: 'Sant Gervasi · Barcelona',
     also: 'Außerdem in der Klinik in Sant Gervasi:',
     others: ['Ästhetische Zahnmedizin', 'Keramikveneers', 'Bleaching', 'Unsichtbare Aligner', 'Familienzahnmedizin'],

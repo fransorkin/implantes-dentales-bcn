@@ -117,7 +117,6 @@ export default {
     titleEm: 'un especialista en implantologia.',
     p1: "El Dr. Diego Uribe Echevarría dirigeix la clínica de Sant Gervasi i combina l'odontologia reconstructiva amb l'estètica. El seu enfocament és integral: relaciona la forma i la funció del rostre amb la forma, la mida i el color de les dents.",
     p2: "Treballa amb odontologia digital i 3D i col·labora amb laboratoris de referència a Barcelona. Cada pacient rep una atenció personalitzada, des de la primera visita fins al seguiment.",
-    quote: 'El nostre objectiu: que el resultat sigui indetectable.',
     location: 'Sant Gervasi · Barcelona',
     also: 'També a la clínica de Sant Gervasi:',
     others: ['Estètica dental', 'Carilles de porcellana', 'Blanqueig', 'Ortodòncia invisible', 'Odontologia familiar'],

@@ -246,14 +246,17 @@ export function Testimonials() {
           </div>
 
           <Reveal delay={0.1} className="lg:col-span-5 lg:sticky lg:top-28">
-            <div className="mx-auto w-full max-w-[400px] overflow-hidden rounded-2xl border border-line bg-white">
-              <iframe
-                src={`${brand.instagramReel}embed/`}
-                title={r.videoTitle}
-                loading="lazy"
-                allow="autoplay; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen
-                className="block h-[690px] w-full"
+            <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-2xl bg-ink">
+              <video
+                src="/video/reel.mp4"
+                poster="/video/reel-poster.jpg"
+                controls
+                playsInline
+                preload="none"
+                width="720"
+                height="1280"
+                aria-label={r.videoTitle}
+                className="block aspect-[9/16] w-full bg-ink object-cover"
               />
             </div>
             <a

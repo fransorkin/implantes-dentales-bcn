@@ -61,10 +61,10 @@ export default function Hero() {
             <img
               src="/img/dr-diego-cirugia.jpg"
               alt={h.photoAlt}
-              width="400"
-              height="440"
+              width="800"
+              height="1000"
               fetchPriority="high"
-              className="aspect-[400/410] w-full object-cover object-top"
+              className="aspect-[4/5] w-full object-cover"
             />
             <figcaption className="absolute inset-x-3 bottom-3 rounded-2xl bg-white px-5 py-3.5 text-ink">
               <span className="block text-[0.95rem] font-semibold">{brand.doctor}</span>

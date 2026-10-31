@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
-import { ArrowUpRight, Check, Loader2, MapPin, MessageCircle, Phone, Plus } from 'lucide-react'
+import { ArrowUpRight, Check, MapPin, MessageCircle, Phone, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { brand, clinics, whatsappHref } from '../data'
 import { useT } from '../i18n'
@@ -157,6 +157,7 @@ export function Contact() {
   const f = c.form
   const [status, setStatus] = useState('idle')
   const [errors, setErrors] = useState({})
+  const [waHref, setWaHref] = useState('')
 
   const onSubmit = (ev) => {
     ev.preventDefault()
@@ -173,9 +174,26 @@ export function Contact() {
       form.querySelector(`[name="${Object.keys(e)[0]}"]`)?.focus()
       return
     }
-    // TODO: conectar con el CRM o servicio de formularios del cliente (incluir el idioma: t.meta / lang)
-    setStatus('sending')
-    setTimeout(() => setStatus('sent'), 1200)
+    // La solicitud se envía por WhatsApp: se abre con el mensaje ya escrito y el paciente lo envía
+    const treatment = t.treatments.items.find((it) => it.id === d.get('tratamiento'))?.label ?? f.treatmentDefault
+    const clinic = clinics.find((cl) => cl.id === d.get('clinica'))
+    const message = d.get('mensaje')?.trim()
+    const text = [
+      f.waIntro,
+      '',
+      `${f.waName}: ${d.get('nombre').trim()}`,
+      `${f.waPhone}: ${d.get('telefono').trim()}`,
+      email && `${f.waEmail}: ${email}`,
+      `${f.waTreatment}: ${treatment}`,
+      `${f.waClinic}: ${clinic.city}`,
+      message && `${f.waMessage}: ${message}`,
+    ]
+      .filter((line) => typeof line === 'string')
+      .join('\n')
+    const href = whatsappHref(text)
+    setWaHref(href)
+    setStatus('sent')
+    window.open(href, '_blank', 'noopener')
   }
 
   return (
@@ -243,6 +261,10 @@ export function Contact() {
                   </svg>
                   <h3 className="display mt-6 text-3xl">{f.okTitle}</h3>
                   <p className="mt-3 max-w-xs text-muted">{f.okText}</p>
+                  <a href={waHref} target="_blank" rel="noopener noreferrer" className="btn-brand mt-8">
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    {f.okButton}
+                  </a>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={onSubmit} noValidate exit={{ opacity: 0 }} className="grid gap-5 sm:grid-cols-2">
@@ -312,15 +334,9 @@ export function Contact() {
                       </p>
                     )}
                   </div>
-                  <button type="submit" disabled={status === 'sending'} className="btn-brand mt-2 disabled:cursor-wait disabled:opacity-70 sm:col-span-2">
-                    {status === 'sending' ? (
-                      <>
-                        <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                        {f.sending}
-                      </>
-                    ) : (
-                      f.submit
-                    )}
+                  <button type="submit" className="btn-brand mt-2 sm:col-span-2">
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    {f.submit}
                   </button>
                   <p className="text-center text-xs text-muted sm:col-span-2">{t.ui.reassurance}</p>
                 </motion.form>

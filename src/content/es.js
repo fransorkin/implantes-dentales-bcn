@@ -186,7 +186,7 @@ export default {
     items: [
       { q: '¿El tratamiento con implantes duele?', a: 'No. Se realiza con anestesia local y, si el paciente lo desea, con sedación consciente. La mayoría coincide en que es mucho más sencillo de lo que imaginaba. Después puede aparecer una ligera inflamación durante unos días, controlable con medicación.' },
       { q: '¿Puedo operarme bajo sedación?', a: 'Sí. La clínica cuenta con el registro sanitario oficial para realizar cirugías bajo sedación, si así lo desea. De este modo pasará la intervención relajado y tranquilo.' },
-      { q: '¿Puedo salir con dientes fijos el mismo día?', a: 'En muchos casos, sí. Con las técnicas All-on-4 y All-on-6 con carga inmediata colocamos los implantes y una prótesis fija provisional en la misma sesión.' },
+      { q: '¿Puedo salir con dientes fijos el mismo día?', a: 'Sí, casi la totalidad de los pacientes. Con las técnicas All-on-4 y All-on-6 con carga inmediata colocamos los implantes y una prótesis fija provisional en la misma sesión.' },
       { q: '¿Cuánto cuestan los implantes en Barcelona?', a: 'Depende de cada caso: número de piezas, tipo de prótesis o necesidad de regeneración ósea. La primera visita es gratuita e incluye diagnóstico y presupuesto cerrado, sin compromiso.' },
       { q: '¿Cuánto duran los implantes?', a: 'Están diseñados para durar muchos años, incluso toda la vida con un mantenimiento adecuado. Le explicamos cómo cuidarlos para prolongar al máximo su duración.' },
       { q: '¿Cualquier persona puede ponerse implantes?', a: 'En la mayoría de los casos, sí. Incluso pacientes con poco hueso o que llevan años sin dientes pueden ser candidatos gracias a injertos óseos o implantes especiales. Cada caso se estudia con diagnóstico digital.' },

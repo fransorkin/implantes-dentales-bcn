@@ -186,7 +186,7 @@ export default {
     items: [
       { q: 'Is implant treatment painful?', a: 'No. It is performed under local anaesthesia and, if the patient wishes, with conscious sedation. Most patients agree it is much simpler than they imagined. Mild swelling may appear for a few days afterwards, easily controlled with medication.' },
       { q: 'Can I have surgery under sedation?', a: 'Yes. The clinic holds the official health authority registration to perform surgery under sedation, if you wish. That way you stay relaxed and calm throughout the procedure.' },
-      { q: 'Can I leave with fixed teeth on the same day?', a: 'In many cases, yes. With All-on-4 and All-on-6 immediate-loading techniques, we place the implants and a fixed provisional prosthesis in the same session.' },
+      { q: 'Can I leave with fixed teeth on the same day?', a: 'Yes, almost all patients do. With All-on-4 and All-on-6 immediate-loading techniques, we place the implants and a fixed provisional prosthesis in the same session.' },
       { q: 'How much do dental implants cost in Barcelona?', a: 'It depends on each case: the number of teeth, type of prosthesis or need for bone regeneration. The first visit is free and includes a diagnosis and a fixed quote, with no obligation.' },
       { q: 'How long do implants last?', a: 'They are designed to last many years, even a lifetime with proper maintenance. We will explain how to care for them to maximise their lifespan.' },
       { q: 'Can anyone have dental implants?', a: 'In most cases, yes. Even patients with little bone or who have been without teeth for years can be candidates thanks to bone grafts or special implants. Every case is assessed with digital diagnostics.' },
